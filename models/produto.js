@@ -4,22 +4,16 @@ const conexao = require('../controllers/infraestrutura/conexao')
 class Produto {
 
     adiciona(produto, res) {
-        const dataCriacao = moment().format('YYYY-MM-DD HH:mm:ss')
-        const data = moment(produto.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
+        produto.dataRegistro = moment().format('YYYY-MM-DD HH:mm:ss')
+        produto.validade = moment(produto.validade, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
     
-        const dataEhValida = moment(data).isSameOrAfter(dataCriacao)
-        const clienteEhValido = produto.cliente.length >=5
-    
+        const valorValido = parseFloat(produto.valor) >= 0
+
         const validacoes = [
             {
-                nome: 'data',
-                valido: dataEhValida,
-                mensagem: 'Data deve ser maior ou igual a data atual'
-            },
-            {
-                nome: 'cliente',
-                valido: clienteEhValido,
-                mensagem: 'Cliente deve ter pelo menos cinco caracteres'
+                nome: 'valor',
+                valido: valorValido,
+                mensagem: 'Valor deve ser maior ou igual a zero'
             }
         ]
     
@@ -29,11 +23,9 @@ class Produto {
         if(existemErros) {
             res.status(400).json(erros)
         } else {        
-            const produtoDatado = {...produto, dataCriacao,data}
-    
             const sql = 'INSERT INTO produtos SET ?'
     
-            conexao.query(sql, produtoDatado, (erro, resultados) => {
+            conexao.query(sql, produto, (erro, resultados) => {
                 if(erro) {
                     res.status(400).json(erro)
                 } else {
@@ -69,11 +61,12 @@ class Produto {
     }
 
     altera(id, valores, res) {
-        const sql = 'UPDATE Produtos SET ? WHERE id=?'
+        const sql = `UPDATE Produtos SET ? WHERE id=${id}`;
 
-        valores.data = moment(valores.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
+        valores.dataRegistro = moment(valores.dataRegistro, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
+        valores.validade = moment(valores.validade, 'DD/MM/YYYY').format('YYYY-MM-DD')
 
-        conexao.query(sql, [valores, id], (erro, resultados) => {
+        conexao.query(sql, valores, (erro, resultados) => {
             if(erro)
                 res.status(400).json(erro)
             else {
@@ -83,9 +76,9 @@ class Produto {
     }
 
     deleta(id, res) {
-        const sql = 'DELETE FROM Produtos WHERE id=?'
+        const sql = `DELETE FROM Produtos WHERE id=${id}`
 
-        conexao.query(sql, id, (erro, resultados) => {
+        conexao.query(sql, (erro, resultados) => {
             if(erro)
                 res.status(400).json(erro)
             else {
