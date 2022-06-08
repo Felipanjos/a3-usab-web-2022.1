@@ -63,8 +63,13 @@ class Produto {
     altera(id, valores, res) {
         const sql = `UPDATE Produtos SET ? WHERE id=${id}`;
 
-        valores.dataRegistro = moment(valores.dataRegistro, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
-        valores.validade = moment(valores.validade, 'DD/MM/YYYY').format('YYYY-MM-DD')
+        if(valores.hasOwnProperty("dataRegistro")){
+            valores.dataRegistro = moment(valores.dataRegistro, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
+        }
+        
+        if(valores.hasOwnProperty("validade")){
+            valores.validade = moment(valores.validade, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')    
+        }
 
         conexao.query(sql, valores, (erro, resultados) => {
             if(erro)
