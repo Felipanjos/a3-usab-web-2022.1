@@ -2,8 +2,8 @@ function Header() {
     return(
         <>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#new-prod">News</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="newProduto.html">Cadastrar produto</a></li>
             </ul>
         </>
     )
