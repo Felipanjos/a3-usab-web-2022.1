@@ -26,7 +26,7 @@ module.exports = () => {
         res.setHeader('Access-Control-Allow-Credentials', true);
     
         // Pass to next layer of middleware
-        next();
+        next()
     })
 
     consign()
