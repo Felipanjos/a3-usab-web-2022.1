@@ -1,3 +1,7 @@
+function confirma() {
+    return confirm('Tem certeza?')
+}
+
 function Header() {
     return(
         <>
@@ -13,7 +17,7 @@ function Header() {
 var request = new XMLHttpRequest()
 
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'http://localhost:3000/produtos', true)
+request.open('GET', 'http://localhost:3000/lista-produtos', true)
 
 const app = document.getElementById('root')
 const headerBar = document.createElement('div')
@@ -26,22 +30,11 @@ container.setAttribute('class', 'container')
 ReactDOM.createRoot(headerBar).render(<Header />);
 
 request.onload = function () {
-        var data = JSON.parse(this.response)
-        
-        if (request.status >= 200 && request.status < 400){
-            data.forEach(produto => {
-                console.log(produto)})
-        }
-}
-
-request.onload = function () {
         // Begin accessing JSON data here
         var data = JSON.parse(this.response)
 
         if (request.status >= 200 && request.status < 400) {
             data.forEach(produto => {
-                console.log(produto)
-                
                 // cria uma section com a classe card
                 const card = document.createElement('section')
                 card.setAttribute('class', 'card')
@@ -51,6 +44,10 @@ request.onload = function () {
                 h1.textContent = produto.nome
 
                 // Cria elementos p e preenche com informacoes dos produtos
+                const pId = document.createElement('p')
+                pId.textContent = `Id: ${produto.id}` 
+                pId.hidden = true
+                
                 const pImagem = document.createElement('p')
                 pImagem.textContent = `Imagem: ${produto.imagem}` 
 
@@ -69,16 +66,38 @@ request.onload = function () {
                 const pValidade = document.createElement('p')
                 pValidade.textContent = `Validade: ${produto.validade}`
 
+                const patchForm = document.createElement('form')
+                patchForm.method = 'post'
+                patchForm.enctype = 'application/x-www-form-urlencoded'
+                patchForm.action = `http://localhost:3000/produtos/buscaPorId/${produto.id}`
+                const update = document.createElement('button')
+                update.textContent = 'Atualizar'
+                update.type = 'submit'
+                patchForm.appendChild(update)
+
+                const deleteForm = document.createElement('form')
+                deleteForm.method = 'post'
+                deleteForm.enctype = 'application/x-www-form-urlencoded'
+                deleteForm.action = `http://localhost:3000/produtos/delete-${produto.id}`
+                const apagar = document.createElement('button')
+                apagar.textContent = 'Remover'
+                apagar.type = 'submit'
+                apagar.onclick = confirma
+                deleteForm.appendChild(apagar)
+
                 // Append the cards to the container element
                 container.appendChild(card)
 
                 // Each card will contain an h1 and a p
                 card.appendChild(h1)
+                card.appendChild(pId)
                 card.appendChild(pImagem)
                 card.appendChild(pValor)
                 card.appendChild(pFornecedor)
                 card.appendChild(pCategoria)
                 card.appendChild(pValidade)
+                card.appendChild(patchForm)
+                card.appendChild(deleteForm)
             })
         } else {
                 console.log('error')

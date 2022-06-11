@@ -12,7 +12,7 @@ function Header() {
 function Form() {
     return(
         <>
-            <form method="post" action="http://localhost:3000/produtos" encType="application/x-www-form-urlencoded">
+            <form method="POST" action="http://localhost:3000/produtos" encType="application/x-www-form-urlencoded">
                 <input type="text" id="nome" name="nome" placeholder="Insira o nome " required/>
                 <input type="text" id="imagem" name="imagem" required/>
                 <input type="text" id="valor" name="valor" placeholder="Insira o valor " required/>
