@@ -45,11 +45,12 @@ request.onload = function () {
 
                 // Cria elementos p e preenche com informacoes dos produtos
                 const pId = document.createElement('p')
-                pId.textContent = `Id: ${produto.id}` 
-                pId.hidden = true
+                    pId.textContent = `Id: ${produto.id}` 
+                    pId.hidden = true
                 
-                const pImagem = document.createElement('p')
-                pImagem.textContent = `Imagem: ${produto.imagem}` 
+                const img = document.createElement('img')
+                    img.src = `${produto.imagem}` 
+                    img.className = 'alterarguigas'
 
                 const pServico = document.createElement('p')
                 pServico.textContent = `Serviço: ${produto.servico}` 
@@ -66,37 +67,32 @@ request.onload = function () {
                 const pValidade = document.createElement('p')
                 pValidade.textContent = `Validade: ${produto.validade}`
 
-                const patchForm = document.createElement('form')
-                patchForm.method = 'post'
-                patchForm.enctype = 'application/x-www-form-urlencoded'
-                patchForm.action = `http://localhost:3000/produtos/buscaPorId/${produto.id}`
                 const update = document.createElement('button')
-                update.textContent = 'Atualizar'
-                update.type = 'submit'
-                patchForm.appendChild(update)
+                    update.textContent = 'Atualizar'
+                    update.type = 'submit'
 
                 const deleteForm = document.createElement('form')
-                deleteForm.method = 'post'
-                deleteForm.enctype = 'application/x-www-form-urlencoded'
-                deleteForm.action = `http://localhost:3000/produtos/delete-${produto.id}`
+                    deleteForm.method = 'post'
+                    deleteForm.enctype = 'application/x-www-form-urlencoded'
+                    deleteForm.action = `http://localhost:3000/produtos/delete-${produto.id}`
                 const apagar = document.createElement('button')
-                apagar.textContent = 'Remover'
-                apagar.type = 'submit'
-                apagar.onclick = confirma
-                deleteForm.appendChild(apagar)
-
+                    apagar.textContent = 'Remover'
+                    apagar.type = 'submit'
+                    apagar.onclick = confirma
+                    deleteForm.appendChild(apagar)
+                
                 // Append the cards to the container element
                 container.appendChild(card)
 
                 // Each card will contain an h1 and a p
                 card.appendChild(h1)
                 card.appendChild(pId)
-                card.appendChild(pImagem)
-                card.appendChild(pValor)
+                card.appendChild(img)
+                card.appendChild(pValor)    
                 card.appendChild(pFornecedor)
                 card.appendChild(pCategoria)
                 card.appendChild(pValidade)
-                card.appendChild(patchForm)
+                card.appendChild(update)
                 card.appendChild(deleteForm)
             })
         } else {
