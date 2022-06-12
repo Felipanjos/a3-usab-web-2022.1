@@ -29,7 +29,7 @@ class Produto {
                 if(erro) {
                     res.status(400).json(erro)
                 } else {
-                    res.status(201).json(produto)
+                    // res.status(201).json(produto)
                 }
             })
         }
@@ -38,9 +38,10 @@ class Produto {
     lista(res) {
         const sql = 'SELECT * FROM Produtos'
 
+        
         conexao.query(sql, (erro, resultados) => {
             if(erro) 
-                res.satus(400).json(erro)
+            res.satus(400).json(erro)
             else {
                 res.status(200).json(resultados)
             }

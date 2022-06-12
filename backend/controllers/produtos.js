@@ -18,15 +18,11 @@ module.exports = app => {
         Produto.lista(res);
     })
     
-    app.get('/search-produto/:id', (req, res) => {
-        const id = parseInt(req.params.id);        
-        Produto.buscaPorId(id, res);
-    });
-
-    app.post('/produtos', (req, res) => {
+    app.post('/produtos/addproduto', (req, res) => {
         const produto = req.body
 
         Produto.adiciona(produto, res)
+        res.redirect(302, 'http://localhost:5500/frontend/index.html')
     })
 
     app.patch('/produtos/:id', (req, res) => {
