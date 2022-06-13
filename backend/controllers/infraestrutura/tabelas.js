@@ -38,7 +38,9 @@ class Tabelas {
             "(7, 'https://master-b2b-img.azureedge.net/product/13209-macarrao-covos-parati-espaguete-500g-g.jpg', 'macarrao', 3.80, 'fettuccine','massa','2024-08-11','2022-03-15 23:59:59')," +
             "(8, 'https://aguamineralhydrate.com.br/wp-content/uploads/2016/02/Garrafa-Agua-Mineral-1-5-litro-entrega.jpg', 'agua', 2.50, 'indaia','bebida','2027-12-18','2022-01-06 23:59:59')," +
             "(9, 'https://st2.depositphotos.com/1050070/10414/i/450/depositphotos_104149230-stock-photo-colgate-tooth-paste-on-white.jpg', 'cremedental', 4.55, 'colgate','higiene pessoal','2024-05-19','2022-01-02 23:59:59')," +
-            "(10, 'https://images.freeimages.com/images/premium/previews/5544/55449564-fresh-cilantro-on-the-boards.jpg', 'coentro', 2.00, 'fazenda amora','temperos','2022-05-27','2020-11-15 23:59:59');"
+            "(10, 'https://images.freeimages.com/images/premium/previews/5544/55449564-fresh-cilantro-on-the-boards.jpg', 'coentro', 2.00, 'fazenda amora','temperos','2022-05-27','2020-11-15 23:59:59')," +
+            "(11, 'https://supernossoemcasa.vteximg.com.br/arquivos/ids/193191-1000-1000/FEIJAO-ROXO-PINK-1KG-PC-T1.jpg?v=637002527976370000', 'Feijão', 8.00, 'Pink Premium','Grãos','2022-09-27','2020-11-15 23:59:59')," +
+            "(12, 'https://a-static.mlcdn.com.br/1500x1500/arroz-branco-meu-biju-1kg/armazemtiojoao/20301/68ecf166d94d2b594bd5107730c26d36.jpg', 'Arroz', 7.00, 'Meu Biju','Grãos','2022-09-27','2020-11-15 23:59:59');"
 
         this.conexao.query(sql, erro => {
             if(erro) 

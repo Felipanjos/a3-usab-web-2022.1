@@ -37,7 +37,6 @@ class Produto {
 
     lista(res) {
         const sql = 'SELECT * FROM Produtos'
-
         
         conexao.query(sql, (erro, resultados) => {
             if(erro) 

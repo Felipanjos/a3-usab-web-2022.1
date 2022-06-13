@@ -10,11 +10,55 @@
 .container {
     display: flex;
     flex-wrap: wrap;
+    color: black;
+
+}
+.card-img{
+    padding: 10%;
 }
 
 .card {
-    margin: 1rem;
-    border: 1px solid gray;
+    margin: 5px;
+    padding: 10px;
+    border: 3px solid black;
+    text-align: center;
+    border-radius: 5%;
+    flex: 1 1 calc(33% - 2rem);
+}
+
+.card h1{
+    font-size: 30px;
+}
+
+.card-img {
+    border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #888;
+	border-bottom: 1px solid #888;
+    border-radius: 5%;
+    width: 50%;
+    height: 30%;
+    padding: 2px;
+}
+
+
+.valor{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.update{
+    background-color: #000000;
+    color: greenyellow;
+    padding: 3px;
+    width: 30%
+}
+
+.apagar{
+    background-color: #000000;
+    color: greenyellow;
+    padding: 3px;
+    width: 30%
 }
 
 ul {
@@ -22,8 +66,9 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #dddddd;
+    background-color: #000000;
     border-radius: 25px;
+
 }
   
 li {
@@ -37,7 +82,7 @@ li a {
 
 a:link, a:visited {
     text-decoration: none;
-    color: brown;
+    color: greenyellow;
 }
 
 .modal {
@@ -77,14 +122,25 @@ a:link, a:visited {
     cursor: pointer;
   }
 
-@media screen and (min-width: 600px) {
+  form{
+      margin: 20px;
+  }
+  
+  #form label, input {
+      display: block;
+      padding: 3px;
+      margin: 15px;
+      width: 50%;
+      border: 1px solid green;
+  }
+  
+  #submit{
+      color: green;
+      background-color: #1a1a1a;
+  }
+
+@media screen and (max-width: 767px) {
     .card {
         flex: 1 1 calc(50% - 2rem);
-    }
-}
-
-@media screen and (min-width: 900px) {
-    .card {
-        flex: 1 1 calc(33% - 2rem);
     }
 }
