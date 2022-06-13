@@ -74,16 +74,6 @@ request.onload = function () {
                 const pRegistro = document.createElement('p')
                 pRegistro.textContent = `Registro: ${produto.dataRegistro}`
 
-                const patchForm = document.createElement('form')
-                    patchForm.method = 'post'
-                    patchForm.enctype = 'application/x-www-form-urlencoded'
-                    patchForm.action = `http://localhost:3000/produtos/buscaPorId/${produto.id}`
-                const update = document.createElement('button')
-                    update.className = 'update'
-                    update.textContent = 'Atualizar'
-                    update.type = 'submit'
-                    patchForm.appendChild(update)
-
                 const deleteForm = document.createElement('form')
                     deleteForm.method = 'post'
                     deleteForm.enctype = 'application/x-www-form-urlencoded'
@@ -107,7 +97,6 @@ request.onload = function () {
                 card.appendChild(pCategoria)
                 card.appendChild(pValidade)
                 card.appendChild(pRegistro)
-                card.appendChild(patchForm)
                 card.appendChild(deleteForm)
             })
         } else {
