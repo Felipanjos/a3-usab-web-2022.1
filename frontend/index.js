@@ -18,6 +18,17 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function toLocalDate(isoDate) {
+    var date = new Date(isoDate)
+    var month = date.getMonth()
+
+    if (month == 0) {
+        month += 1
+    }
+
+    return date.getDate() + "/" + month + "/" + date.getFullYear()
+}
+
 // Create a request variable and assign a new XMLHttpRequest object to it.
 var request = new XMLHttpRequest()
 
@@ -68,11 +79,10 @@ request.onload = function () {
                     pCategoria.textContent = `Categoria: ${capitalize(produto.categoria)}`
 
                 const pValidade = document.createElement('p')
-                    pValidade.textContent = `Validade: ${produto.validade}`
-                    // pValidade.textContent = `Validade: ${moment(produto.validade).format("DD/MM/YYYY")}`
+                    pValidade.textContent = `Validade: ${(toLocalDate(produto.validade))}`
                 
                 const pRegistro = document.createElement('p')
-                pRegistro.textContent = `Registro: ${produto.dataRegistro}`
+                pRegistro.textContent = `Registro: ${toLocalDate(produto.dataRegistro)}`
 
                 const deleteForm = document.createElement('form')
                     deleteForm.method = 'post'

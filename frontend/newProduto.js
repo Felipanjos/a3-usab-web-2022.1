@@ -17,7 +17,7 @@ function Form() {
                 <label for="nome"> Nome </label>
                 <input type="text" id="nome" name="nome" placeholder="Insira o nome " required/>
                 <label for="Imagem"> Imagem </label>
-                <input type="text" id="imagem" name="imagem" required/>
+                <input type="text" id="imagem" name="imagem" placeholder = "Insira o link da imagem"required/>
                 <label for="Valor"> Valor </label>
                 <input type="text" id="valor" name="valor" placeholder="Insira o valor " required/>
                 <label for="fornecedor"> Fornecedor </label>
